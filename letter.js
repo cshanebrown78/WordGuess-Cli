@@ -1,17 +1,17 @@
-function Letter (char) {
+function Letter(char) {
     this.char = char;
     this.guessed = false;
     this.toString = function() {
         if (char === " ") {
             return " ";
-        } else if (!this.guessed) {
-                return "_";
+        } else if (this.guessed === false) {
+                console.log("_");
             } else {
-                return this.char;
+                console.log(this.char);
             };
     };
-    this.check = function(userInput) {
-        switch(userinput) {
+    this.letterCheck = function(userInput) {
+        switch(userInput) {
             case this.char:
                 this.guessed = true;
                 break;
@@ -19,3 +19,8 @@ function Letter (char) {
     }
 }
 
+// var testChar = new Letter("a");
+// testChar.toString();
+
+
+module.exports = Letter;
