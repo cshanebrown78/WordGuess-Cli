@@ -8,8 +8,16 @@ function Word(word) {
         for (var i = 0; i < this.word.length; i++) {
             this.wordArr.push(new Letter(this.word[i]));
             // this.wordArr.push(character);
+            // this.wordArr[i].toString();
         }
-        console.log(this.wordArr);
+        
+    }
+    this.displayWord = function() {
+        toDisplay = [];
+        for (var j = 0; j < this.wordArr.length; j++) {
+            toDisplay.push(this.wordArr[i].toString());
+        }
+        console.log(toDisplay.join(" "));
     }
     this.letterGuess = function(userInput){
         for (var j = 0; j < this.wordArr; j++) {
@@ -19,5 +27,7 @@ function Word(word) {
 }
 
 
-var testWord = new Word("test");
-testWord.wordBuild();
+    var testWord = new Word("test");
+    testWord.wordBuild();
+    
+
