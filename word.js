@@ -15,13 +15,13 @@ function Word(word) {
     this.displayWord = function() {
         toDisplay = [];
         for (var j = 0; j < this.wordArr.length; j++) {
-            toDisplay.push(this.wordArr[i].toString());
+            toDisplay.push(this.wordArr[j].toString());
         }
-        console.log(toDisplay.join(" "));
+        return toDisplay.join(" ");
     }
     this.letterGuess = function(userInput){
-        for (var j = 0; j < this.wordArr; j++) {
-            wordArr[i].letterCheck(userInput);
+        for (var k = 0; k < this.wordArr; k++) {
+            wordArr[k].letterCheck(userInput);
         }
     }
 }
@@ -31,3 +31,4 @@ function Word(word) {
     testWord.wordBuild();
     
 
+module.exports = Word;
