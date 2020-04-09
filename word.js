@@ -20,15 +20,14 @@ function Word(word) {
         return toDisplay.join(" ");
     }
     this.letterGuess = function(userInput){
-        for (var k = 0; k < this.wordArr; k++) {
-            wordArr[k].letterCheck(userInput);
+        for (var k = 0; k < this.wordArr.length; k++) {
+            this.wordArr[k].letterCheck(userInput);
+            
         }
     }
 }
 
 
-    var testWord = new Word("test");
-    testWord.wordBuild();
-    
+
 
 module.exports = Word;

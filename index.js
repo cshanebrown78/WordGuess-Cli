@@ -17,9 +17,10 @@ function gameStart() {
         randWord = cityList[Math.floor(Math.random()*cityList.length)];
         console.log(randWord);
         wordConvert = new Word(randWord);
-        theWord = wordConvert.wordBuild();
+        // console.log("--" + JSON.stringify(wordConvert));
+        wordConvert.wordBuild();
         console.log("\nYou have 6 wrong guesses to figure out the major US city.\n")
-        console.log(wordConvert.displayWord() + "\n");
+        // console.log(wordConvert.displayWord() + "\n");
         cityList.splice(randWord,1);
         gamePlay();
     } else {
@@ -31,6 +32,7 @@ function gameStart() {
 
 function gamePlay() {
     if(guesses > 0) {
+        console.log(wordConvert.displayWord() + "\n");
         inquirer.prompt ([
             {
                 type: "input",
@@ -39,7 +41,7 @@ function gamePlay() {
             }
         ]).then(function(user) {
             userLetter = user.letterGuessed.toLowerCase();
-            console.log("----" + userLetter);
+            // console.log("----" + userLetter);
             inputCheck(userLetter);
         })
     } else { 
@@ -48,19 +50,23 @@ function gamePlay() {
 };
 
 function inputCheck(userLetter) {
+    console.log("----" + userLetter)
     console.log("---" + userLetter.length);
+    // console.log(wordConvert.displayWord() + "\n");
     if(userLetter.length === 1){
-        var tempWord = wordConvert.wordBuild();
-        console.log(wordConvert.wordBuild());
-        console.log(tempWord);
+        var tempWord = wordConvert.displayWord();
+        // console.log(wordConvert.wordBuild());
+        console.log("---" + tempWord);
         wordConvert.letterGuess(userLetter);
-        if(tempWord === wordConvert.wordBuild()) {
+        if(tempWord === wordConvert.displayWord()) {
             console.log("\You guessed incorrectly!")
             guesses--;
             console.log("\nYou have " + guesses + " guesses left.");
             gamePlay();
         } else {
-            console.log(wordConvert.wordBuild());
+            console.log("You guessed correctly!");
+            gamePlay();
+
         }
     } else {
         console.log("\Please pick only one letter at a time.")
