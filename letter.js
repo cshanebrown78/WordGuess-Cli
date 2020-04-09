@@ -11,10 +11,8 @@ function Letter(char) {
             };
     };
     this.letterCheck = function(userInput) {
-        switch(userInput) {
-            case this.char:
-                this.guessed = true;
-                break;
+        if(userInput === this.char) {
+            this.guessed = true;
         }
     }
 }

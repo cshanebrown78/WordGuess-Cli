@@ -4,7 +4,7 @@ var inquirer = require("inquirer");
 var wordGrab = 0;
 var randWord = "";
 var wordConvert = "";
-var cityList = ["dallas", "austin", "san antonio", "houston", "los angeles", "new orleans", "chicago", "new york", "boston", "atlanta", "miami", "denver", "portland"]
+var cityList = []
 var guesses = 6;
 var userLetter = "";
 var theWord = "";
@@ -12,7 +12,8 @@ var theWord = "";
 
 
 function gameStart() {
-    if(cityList.length>-1) {
+    // console.log(cityList.length)
+    if(cityList.length > 0) {
         randWord = cityList[Math.floor(Math.random()*cityList.length)];
         console.log(randWord);
         wordConvert = new Word(randWord);
@@ -22,7 +23,7 @@ function gameStart() {
         cityList.splice(randWord,1);
         gamePlay();
     } else {
-    console.log("/nThere are no cities left to guess.");
+    console.log("\nThere are no cities left to guess.");
     gameRestart();
     
     }
@@ -56,7 +57,7 @@ function inputCheck(userLetter) {
         if(tempWord === wordConvert.wordBuild()) {
             console.log("\You guessed incorrectly!")
             guesses--;
-            console.log("\nYou have " + guesses + "guesses left.");
+            console.log("\nYou have " + guesses + " guesses left.");
             gamePlay();
         } else {
             console.log(wordConvert.wordBuild());
@@ -80,22 +81,19 @@ function gameRestart() {
         }
     ])
     .then(function(user) {
-        if(user.startOver === "Yes"){
-            var wordGrab = 0;
-            var randWord = "";
-            var wordConvert = "";
-            var cityList = ["dallas", "austin", "san antonio", "houston", "los angeles", "new orleans", "chicago", "new york", "boston", "atlanta", "miami", "denver", "portland"]
-            var guesses = 6;
+        var playAgain = (user.startOver)
+        console.log(playAgain[0]);
+        if(playAgain[0] === "Yes"){
+            wordGrab = 0;
+            randWord = "";
+            wordConvert = "";
+            cityList = ["dallas", "austin", "san antonio", "houston", "los angeles", "new orleans", "chicago", "new york", "boston", "atlanta", "miami", "denver", "portland"]
+            guesses = 6;
             gameStart();
         } else {
             console.log("Thanks for playing...Goodbye!")
         }
     })
 
-    var wordGrab = 0;
-    var randWord = "";
-    var wordConvert = "";
-    var cityList = ["dallas", "austin", "san antonio", "houston", "los angeles", "new orleans", "chicago", "new york", "boston", "atlanta", "miami", "denver", "portland"]
-    var guesses = 6;
-    gameStart();
+
 }
