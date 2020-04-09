@@ -50,13 +50,13 @@ function gamePlay() {
 };
 
 function inputCheck(userLetter) {
-    console.log("----" + userLetter)
-    console.log("---" + userLetter.length);
+    // console.log("----" + userLetter)
+    // console.log("---" + userLetter.length);
     // console.log(wordConvert.displayWord() + "\n");
     if(userLetter.length === 1){
         var tempWord = wordConvert.displayWord();
         // console.log(wordConvert.wordBuild());
-        console.log("---" + tempWord);
+        // console.log("---" + tempWord);
         wordConvert.letterGuess(userLetter);
         if(tempWord === wordConvert.displayWord()) {
             console.log("\You guessed incorrectly!")
