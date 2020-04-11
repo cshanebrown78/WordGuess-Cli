@@ -12,11 +12,10 @@ var usedLetters = [];
 
 
 function gameStart() {
-    // console.log(cityList)
+    
     if(cityList.length > 0) {
         // chooses a city randomly
         randWord = cityList[Math.floor(Math.random()*cityList.length)];
-        // console.log(randWord);
         // the two below variables have to be reset each time gameStart is run
         guesses = 6;
         usedLetters = [];
@@ -24,11 +23,9 @@ function gameStart() {
         var c = cityList.indexOf(randWord);
         // sends the random city to the word js
         wordConvert = new Word(randWord);
-        // console.log("--" + JSON.stringify(wordConvert));
         // runs the necessary function to break the city down into separate letters
         wordConvert.wordBuild();
         console.log("\nYou have 6 wrong guesses to figure out the major US city.\n");
-        // console.log(wordConvert.displayWord() + "\n");
         // removes the randomly chosen city from the list
         cityList.splice(c,1);
         // console.log(cityList)
@@ -52,6 +49,7 @@ function gamePlay() {
             }
         ]).then(function(user) {
             userLetter = user.letterGuessed.toLowerCase();
+            // if statement to keep the same letter from being chosen twice
             if (usedLetters.indexOf(userLetter) > -1) {
                 console.log("\nPlease choose a letter you haven't used already.\n");
                 gamePlay();
@@ -68,22 +66,17 @@ function gamePlay() {
 };
 
 function inputCheck(userLetter) {
-    // console.log("----" + userLetter)
-    // console.log("---" + userLetter.length);
-    // console.log(wordConvert.displayWord() + "\n");
+
     if(userLetter.length === 1){
         var tempWord = wordConvert.displayWord();
-        // console.log(wordConvert.wordBuild());
-        // console.log("---" + tempWord);
         wordConvert.letterGuess(userLetter);
-        // console.log("---" + wordConvert.displayWord().replace(/ /g,""));
+        // checks if the user Letter is part of the chosen city
         if(tempWord === wordConvert.displayWord()) {
             console.log("\nYou guessed incorrectly!")
             guesses--;
             console.log("\nYou have " + guesses + " guesses left.");
             gamePlay();
         } else if (randWord.replace(/ /g,"") === wordConvert.displayWord().replace(/ /g,"")) {
-        
             console.log("\nYou guessed the right City.\n"+ randWord.toUpperCase() + "\nNext word\n");
             gameStart();
 
